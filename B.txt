@@ -1,0 +1,113 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define pb push_back
+void solve(){
+  string str;
+  cin>>str;
+  int n = str.size();
+  if(n==1){
+    char temp=str[0];
+    int a = temp-'0';
+    if(a>=5){
+      cout<<"10"<<endl;
+    }
+    else cout<<str<<endl;
+  }
+  else{
+  int ind=-1;
+  for(int i=0;i<n;i++){
+    char temp=str[i];
+    int temp1 = temp-'0';
+    if(temp1==9 || (temp1>=5 && temp1<9)){
+      ind = i;
+      break;
+    }
+  }
+  if(ind==-1){
+    cout<<str<<endl;
+  }
+  else if(ind==0){
+    string res;
+    res.push_back('1');
+    for(int i=0;i<n;i++){
+      res.push_back('0');
+    }
+    cout<<res<<endl;
+  }
+  else{
+    int count=0;
+    for(int j=ind-1;j>=0;j--){
+    char a = str[j];
+    int t = a - '0';
+    if(t==4 || t==9){
+      count++;
+    }
+    else break;
+    }
+    if(count==0){
+      string res;
+      for(int i=0;i<ind-1;i++){
+        res.push_back(str[i]);
+      }
+      char z = str[ind-1];
+      int q = z-'0';
+      q++;
+      char c = q+'0';
+      res.push_back(c);
+      for(int j=ind;j<n;j++){
+        res.push_back('0');
+      }
+      cout<<res<<endl;
+    }
+    else{
+      string res;
+      // cout<<"ind at "<<ind<<endl;
+      // int num=n-ind+count;
+      int num;
+      num = n - (n-ind);
+      num = num - count;
+      // cout<<"num at "<<num<<endl;
+      if(ind>=num){
+        if(num>0){
+      for(int k=0;k<=num-2;k++){
+        res.push_back(str[k]);
+        // cout<<"test"<<endl;
+      }
+      char z = str[num-1];
+      int q = z-'0';
+      q++;
+      char c= q + '0';
+      // cout<<"c is "<<c<<endl;
+      res.push_back(c);
+       for(int p=num;p<n;p++){
+        res.push_back('0');
+      }
+    }
+     else {
+      res.push_back('1');
+      for(int i=0;i<n;i++) res.push_back('0');
+     } 
+     
+      cout<<res<<endl;
+    }
+    else{
+
+    }
+    }
+  }
+}
+}
+int main(){
+    #ifndef ONLINE_JUDGE
+    freopen("inputf.in", "r", stdin);
+    freopen("outputf.in", "w", stdout);
+    #endif
+    
+    int t;
+    cin>>t;
+    while(t--){
+        solve();
+    }
+  return 0;
+}
